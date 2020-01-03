@@ -11,6 +11,16 @@
 |
 */
 
+
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+//登录注册
+$router->post('user/login', 'UserController@login');
+$router->post('user/register', 'UserController@register');
+$router->get('user/info', [
+    'middleware' => 'authToken',
+    'uses' => 'UserController@info'
+]);
